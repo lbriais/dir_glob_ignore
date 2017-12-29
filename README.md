@@ -36,6 +36,14 @@ Dir.glob_with_ignore_file '.my_ignore_file', '/a/root/directory', *standard_glob
 for the glob function but actually defines where to search ignore files.
 * Then the remaining parameters are identical to the ones you could pass to `Dir::glob`
  
+## Ignore files format
+
+The format is really simple, inspired by `.gitignore` file format (except you can't specify 
+"_positive_" exceptions with "!").
+
+You can specify comment lines with "#". Blank lines are ignored.
+
+Patterns are actually any `Dir::glob` valid pattern
 
 ## Contributing
 
