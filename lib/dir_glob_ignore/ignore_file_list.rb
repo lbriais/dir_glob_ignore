@@ -1,11 +1,15 @@
 module DirGlobIgnore
 
-  module IgnoreFileList
+  class IgnoreFileList
 
     DEFAULT_FILE_NAME = '.ignore'.freeze
 
     attr_writer :ignore_file_name, :base_dir
     attr_reader :ignore_list
+
+    def initialize(base_dir = nil)
+      self.base_dir = base_dir
+    end
 
     def ignore_file_name
       @ignore_file_name ||= DEFAULT_FILE_NAME
