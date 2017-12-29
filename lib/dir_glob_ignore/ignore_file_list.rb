@@ -26,7 +26,17 @@ module DirGlobIgnore
     attr_reader :cache
 
     def load_ignore_file(ignore_file)
-      
+      File.readlines(ignore_file).map(&:chomp).reject do |entry|
+        if entry =~ /^\s*#/
+          # Ignore commented lines
+          true
+        elsif entry =~ /^\s*$/
+          # Ignore empty lines
+          true
+        else
+          false
+        end
+      end
     end
 
     def ignore_files
