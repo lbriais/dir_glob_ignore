@@ -33,6 +33,11 @@ describe DirGlobIgnore::IgnoreFileList do
       expect(cache[test_root].size).to eq 2
     end
 
+    it 'should build a list of files to ignore' do
+      expect {subject.load_ignore_files}.not_to raise_error
+      expect(subject.ignore_list.size).to eq 3
+    end
+
   end
 
 end

@@ -5,6 +5,7 @@ module DirGlobIgnore
     DEFAULT_FILE_NAME = '.ignore'.freeze
 
     attr_writer :ignore_file_name, :base_dir
+    attr_reader :ignore_list
 
     def ignore_file_name
       @ignore_file_name ||= DEFAULT_FILE_NAME
@@ -17,9 +18,9 @@ module DirGlobIgnore
     def load_ignore_files
       @cache = {}
       ignore_files.each do |ignore_file|
-        cache[File.dirname ignore_file] = load_ignore_file ignore_file
+        cache[File.expand_path File.dirname ignore_file] = load_ignore_file ignore_file
       end
-      puts build_ignore_list.inspect
+      build_ignore_list
     end
 
     private
@@ -33,7 +34,7 @@ module DirGlobIgnore
           ignore_list.concat Dir.glob(File.join(dir, pattern), File::FNM_DOTMATCH)
         end
       end
-      ignore_list
+      @ignore_list = ignore_list.sort.uniq
     end
 
     def load_ignore_file(ignore_file)
