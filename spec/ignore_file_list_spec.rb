@@ -30,7 +30,7 @@ describe DirGlobIgnore::IgnoreFileList do
       expect {subject.load_ignore_files}.not_to raise_error
       cache = subject.send :cache
       expect(cache.size).to eq 3
-      expect(cache[test_root].size).to eq 1
+      expect(cache[test_root].size).to eq 2
     end
 
   end
