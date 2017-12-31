@@ -1,6 +1,6 @@
 # DirGlobIgnore
 
-Adds _a-la-git_ features to `Dir::glob` so that file selection will
+Adds _a-la-git_ features to `Dir::glob`, so that file selection will
 take in account custom _ignore_ files.
 
 ## Installation
@@ -21,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-Once required this gem patches the `Dir` Ruby core class by adding a new method `glob_with_ignore_file`
+Once required this gem patches the `Dir` Ruby core class by adding a new method `::glob_with_ignore_file`
  which allows to specify _a-la-git_ ignore files.
  
 Like with Git, there can be multiple ignore files in sub-directories...
