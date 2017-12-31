@@ -1,6 +1,7 @@
 # DirGlobIgnore
 
-Enable file globbing with a-la-git ignore files management. 
+Adds _a-la-git_ features to `Dir::glob` so that file selection will
+take in account custom _ignore_ files.
 
 ## Installation
 
@@ -23,7 +24,7 @@ Or install it yourself as:
 Once required this gem patches the `Dir` Ruby core class by adding a new method `glob_with_ignore_file`
  which allows to specify _a-la-git_ ignore files.
  
-Like with Git, there can be multiple ignore files in sub-directories
+Like with Git, there can be multiple ignore files in sub-directories...
 
 ```ruby
 require 'dir_glob_ignore'
@@ -31,18 +32,18 @@ require 'dir_glob_ignore'
 Dir.glob_with_ignore_file '.my_ignore_file', '/a/root/directory', *standard_glob_options
 ```
 
-* The first parameter specifies the name of the ignore files to look for.
+* The first parameter specifies the name (without path) of the ignore files to look for.
 * The second parameter specifies a root directory for ignore files. This is not a root directory 
 for the glob function but actually defines where to search ignore files.
 * Then the remaining parameters are identical to the ones you could pass to `Dir::glob`
  
 ## Ignore files format
 
-The format is really simple, inspired by `.gitignore` file format 
+The format is really simple, inspired by `.gitignore` file format:
 
-You can specify comment lines with "#". Blank lines are ignored.
-
-Patterns are actually any `Dir::glob` valid pattern
+* You can specify comment lines with "#".
+* Blank lines are ignored.
+* Patterns are actually any `Dir::glob` valid pattern
 
 ## Current limitations and TODOs
 
