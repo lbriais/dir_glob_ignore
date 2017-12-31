@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Dir do
 
   let(:base_dir) { File.expand_path File.join('..', '..', 'test'), __FILE__ }
-  let(:ignore_file) { DirGlobIgnore::IgnoreFileList::DEFAULT_FILE_NAME }
+  let(:ignore_file) { DirGlobIgnore::IgnoreFileLists::DEFAULT_FILE_NAME }
 
   subject { described_class }
 

@@ -1,11 +1,10 @@
 module DirGlobIgnore
 
-  class IgnoreFileList
+  class IgnoreFileLists
 
     DEFAULT_FILE_NAME = '.ignore'.freeze
 
     attr_writer :ignore_file_name, :base_dir
-    attr_reader :ignore_list
 
     def initialize(base_dir = nil)
       self.base_dir = base_dir
@@ -22,23 +21,32 @@ module DirGlobIgnore
     def load_ignore_files
       @cache = {}
       ignore_files.each do |ignore_file|
-        cache[File.expand_path File.dirname ignore_file] = load_ignore_file ignore_file
+        cache[File.expand_path File.dirname ignore_file] = {
+            ignore_file: ignore_file,
+            patterns: load_ignore_file(ignore_file),
+            ignored_files: []
+        }
       end
-      build_ignore_list
+      build_cached_ignore_lists
+    end
+
+    def ignore_file?(file)
+      cache.values.each do |info|
+        return true if info[:ignored_files].include? File.expand_path(file)
+      end
+      false
     end
 
     private
 
     attr_reader :cache
 
-    def build_ignore_list
-      ignore_list = []
-      cache.each do |dir, patterns|
-        patterns.each do |pattern|
-          ignore_list.concat Dir.glob(File.join(dir, pattern), File::FNM_DOTMATCH)
+    def build_cached_ignore_lists
+      cache.each do |dir, info|
+        info[:patterns].each do |pattern|
+          info[:ignored_files].concat Dir.glob(File.join(dir, pattern), File::FNM_DOTMATCH)
         end
       end
-      @ignore_list = ignore_list.sort.uniq
     end
 
     def load_ignore_file(ignore_file)

@@ -21,7 +21,7 @@ Or install it yourself as:
 ## Usage
 
 Once required this gem patches the `Dir` Ruby core class by adding a new method `glob_with_ignore_file`
- which allows to specify  _a-la-git_ ignore files
+ which allows to specify _a-la-git_ ignore files.
  
 Like with Git, there can be multiple ignore files in sub-directories
 
@@ -38,12 +38,19 @@ for the glob function but actually defines where to search ignore files.
  
 ## Ignore files format
 
-The format is really simple, inspired by `.gitignore` file format (except you can't specify 
-"_positive_" exceptions with "!").
+The format is really simple, inspired by `.gitignore` file format 
 
 You can specify comment lines with "#". Blank lines are ignored.
 
 Patterns are actually any `Dir::glob` valid pattern
+
+## Current limitations and TODOs
+
+### Positive patterns
+
+Currently you can't specify a "_positive_" pattern like in `.gitignore` files (using "!").
+
+PR welcome...
 
 ## Contributing
 
