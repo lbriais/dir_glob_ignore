@@ -65,7 +65,7 @@ module DirGlobIgnore
 
     def ignore_files
       file_pattern = File.join base_dir, '**', ignore_file_name
-      Dir.glob file_pattern
+      Dir.glob file_pattern, File::FNM_DOTMATCH
     end
 
 
