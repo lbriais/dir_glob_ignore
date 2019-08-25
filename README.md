@@ -3,6 +3,9 @@
 Adds _a-la-git_ features to `Dir::glob`, so that file selection will
 take in account custom _ignore_ files.
 
+**Moved to [Gitlab](https://gitlab.com/lbriais/dir_glob_ignore) because of MS-phobia...**
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
